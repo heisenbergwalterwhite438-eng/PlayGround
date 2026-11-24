@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#10291f" />
+  <title>Kerala Life — The Open World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <canvas id="world" aria-label="Kerala open world game scene"></canvas>
+    <div class="scene-vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Kerala Life home"><span class="brand-mark">K</span><span><b>KERALA</b><small>THE OPEN WORLD</small></span></a>
+      <div class="location"><span class="live-dot"></span><span id="districtLabel">ERNAKULAM</span><i> / </i><strong id="placeLabel">Fort Kochi</strong></div>
+      <div class="top-actions"><button class="icon-button" id="soundButton" aria-label="Toggle sound">♫ <span>Sound on</span></button><button class="icon-button" id="mapButton" aria-label="Open map">⌖ <span>World map</span></button></div>
+    </header>
+
+    <section class="left-rail">
+      <div class="chapter-card"><div class="eyebrow"><span class="chapter-line"></span> A JOURNEY THROUGH GOD'S OWN COUNTRY</div><h1>Where the<br><em>roads remember.</em></h1><p>Fourteen districts. A thousand small stories. This one is yours.</p><div class="chapter-progress"><span id="storyCount">01</span><div><b>THE LONG WAY HOME</b><small>CHAPTER 01&nbsp; · &nbsp;OPEN WORLD</small></div></div></div>
+      <div class="quest-card"><div class="quest-heading"><span class="quest-icon">✳</span><span>YOUR NEXT CHAPTER</span><span class="quest-dot"></span></div><h2 id="questTitle">A note from the coast</h2><p id="questDescription">Find the old boatman near the Chinese fishing nets. He has a story that begins before the first ferry.</p><div class="quest-footer"><span>◈ &nbsp;STORY QUEST</span><button id="questButton">TRACK&nbsp; ↗</button></div></div>
+      <div class="controls-hint"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><span class="hint-copy">to explore</span><span class="hint-divider"></span><span class="keycap wide">E</span><span class="hint-copy">interact</span></div>
+    </section>
+
+    <div class="right-rail">
+      <div class="weather-card"><div class="weather-top"><span>MONSOON SEASON</span><span class="weather-icon">☁</span></div><div class="weather-reading"><b id="temperature">28°</b><span>Light rain<br><small>Feels like 31°</small></span></div><div class="weather-rule"><i></i></div><div class="weather-bottom"><span>☼ &nbsp;5:42 PM</span><span>↗ 12 km/h</span></div></div>
+      <div class="map-card"><div class="mini-map" id="miniMap"><div class="map-river"></div><div class="map-road"></div><div class="map-road secondary"></div><div class="map-town">FORT KOCHI</div><div class="map-player"><i></i></div><span class="map-north">N</span></div><div class="map-caption"><span><b id="mapPlace">Fort Kochi</b><small>KERALA, INDIA</small></span><button id="expandMap" aria-label="Expand map">↗</button></div></div>
+      <div class="district-chip"><span class="district-symbol">✳</span><span><small>DISCOVERING</small><b id="districtProgress">1 OF 14 DISTRICTS</b></span><span class="chip-chevron">⌄</span></div>
+    </div>
+
+    <div class="bottom-bar"><div class="world-coords"><span class="coords-icon">⌖</span><span id="coordinates">09°57' N&nbsp; 76°14' E</span><i></i><span id="areaName">THE ARABIAN SEA COAST</span></div><div class="bottom-center"><span class="soundwave"><i></i><i></i><i></i><i></i><i></i></span><span id="ambientLabel">BACKWATER BREEZE</span></div><div class="bottom-right"><span class="explore-count"><b id="discoveryCount">0</b> STORIES FOUND</span><span class="bottom-sep"></span><button class="menu-button" id="journalButton">JOURNAL <span>J</span></button></div></div>
+
+    <div class="toast" id="toast"><span>✦</span><b id="toastText">A new story awaits</b></div>
+    <div class="interaction-prompt" id="interactionPrompt"><span class="keycap wide">E</span><span id="promptText">Talk to the boatman</span></div>
+    <div class="crosshair"><i></i></div>
+
+    <section class="overlay map-overlay" id="worldMapOverlay" aria-hidden="true"><div class="overlay-panel map-panel"><button class="close-button" data-close>×</button><div class="eyebrow">A STATE OF MANY WORLDS</div><h2>Find your <em>own way.</em></h2><p class="overlay-intro">The road is yours. Pick a district to travel there and see where its story takes you.</p><div class="district-grid" id="districtGrid"></div><div class="map-legend"><span><i class="legend-pin"></i> CURRENT JOURNEY</span><span>14 DISTRICTS &nbsp;·&nbsp; 1 HOME</span></div></div></section>
+    <section class="overlay journal-overlay" id="journalOverlay" aria-hidden="true"><div class="overlay-panel journal-panel"><button class="close-button" data-close>×</button><div class="eyebrow">FIELD NOTES &nbsp;·&nbsp; 01</div><h2>The long way <em>home.</em></h2><p class="journal-lede">Every place holds a story. Every story belongs to someone.</p><div class="journal-stats"><div><b id="journalDiscoveries">0</b><small>STORIES FOUND</small></div><div><b id="journalDistricts">1 / 14</b><small>DISTRICTS VISITED</small></div><div><b id="journalDistance">0.0 km</b><small>GROUND COVERED</small></div></div><div class="journal-entry"><div class="entry-date">DAY 01 &nbsp; · &nbsp; ERNAKULAM</div><h3>Somewhere between the sea and the shore</h3><p>They say every journey in Kerala begins with water. The tide comes in carrying a thousand small things from far away—and leaves behind just enough to make you stay.</p><div class="entry-signature">— An old boatman, Fort Kochi</div></div><div class="journal-tip">TIP &nbsp; · &nbsp; Look for glowing markers. The best stories aren't on the map.</div></div></section>
+
+    <div class="mobile-controls"><button id="mobileInteract">TALK</button><div class="dpad"><button data-dir="up">▲</button><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div></div>
+    <div class="start-screen" id="startScreen"><div class="start-grain"></div><div class="start-content"><div class="start-kicker"><span></span> AN ORIGINAL OPEN-WORLD JOURNEY <span></span></div><div class="start-logo">KERALA<small>THE OPEN WORLD</small></div><div class="start-rule"></div><p>Take the long way home.</p><button id="beginButton">BEGIN YOUR JOURNEY <span>↗</span></button><div class="start-foot">WASD TO WALK &nbsp;·&nbsp; E TO CONNECT &nbsp;·&nbsp; M FOR THE MAP</div></div><div class="start-location">FORT KOCHI, ERNAKULAM <span>09°57' N &nbsp; 76°14' E</span></div></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
