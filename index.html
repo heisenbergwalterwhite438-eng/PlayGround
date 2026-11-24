@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#102d2b" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23e6bc69'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='38' font-family='sans-serif' fill='%23234a3e'%3E%E0%B4%B5%3C/text%3E%3C/svg%3E" />
+  <title>വഴിയോരം — Kerala Open Roads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <canvas id="game" aria-label="Kerala open-world driving game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">വ</div><div><div class="brand-name">വഴിയോരം <span>KERALA</span></div><div class="brand-sub">OPEN ROADS · OPEN STORIES</div></div></div>
+      <div class="top-actions"><div class="weather"><span class="sun">☀</span><span id="weatherText">MONSOON CLEAR</span></div><button id="mapButton" class="icon-btn" aria-label="Open map">⌖</button><button id="soundButton" class="icon-btn" aria-label="Toggle sound">♫</button></div>
+    </header>
+    <section class="left-panel glass">
+      <div class="eyebrow"><span class="live-dot"></span> YOUR JOURNEY</div>
+      <h1 id="districtTitle">എറണാകുളം</h1><div id="districtEnglish" class="district-en">ERNAKULAM DISTRICT</div>
+      <div class="route-divider"><span></span><i>✦</i><span></span></div>
+      <div class="mission-label">TODAY'S LITTLE ADVENTURE</div>
+      <div id="missionTitle" class="mission-title">ഓണപ്പൊതി എത്തിക്കൂ</div>
+      <p id="missionText" class="mission-text">ആലപ്പുഴയിലെ കായൽക്കരയിൽ കാത്തിരിക്കുന്ന കൂട്ടുകാരന് ഒരു ഓണസദ്യ എത്തിക്കണം.</p>
+      <div class="destination"><div class="destination-pin">↗</div><div><small>NEXT STOP</small><strong id="destinationText">ആലപ്പുഴ · ALAPPUZHA</strong></div><span id="distanceText">02.4 km</span></div>
+    </section>
+    <aside class="right-panel">
+      <div class="minimap-card glass"><div class="mini-head"><span>KERALA ROUTE</span><span id="visitedCount">01 / 14</span></div><canvas id="minimap" width="180" height="280"></canvas><div class="mini-foot"><span class="legend-dot"></span> YOU ARE HERE <span class="legend-dash">···</span></div><button id="openMap" class="map-link">VIEW ALL DISTRICTS <span>↗</span></button></div>
+      <div class="stats glass"><div class="stat-icon">✧</div><div><small>TRAVEL MILES</small><strong id="miles">0.0 <em>km</em></strong></div><div class="stat-sep"></div><div><small>GOOD DEEDS</small><strong id="deliveries">0 <em>/ 14</em></strong></div></div>
+    </aside>
+    <div class="bottom-hud"><div class="location-chip glass"><span class="loc-symbol">⌖</span><div><small>YOU'RE EXPLORING</small><strong id="locationLabel">FORT KOCHI · ERNAKULAM</strong></div></div><div class="speed glass"><div><strong id="speedValue">0</strong><small>KM/H</small></div><div class="speed-bar"><span id="speedFill"></span></div><span class="gear">D</span></div><div class="controls-hint glass"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>TO DRIVE</span></div></div>
+    <div class="touch-controls" aria-label="Driving controls"><div class="steer-wrap"><button class="touch-btn steer-left" data-control="left">‹</button><button class="touch-btn steer-right" data-control="right">›</button></div><div class="pedal-wrap"><button class="touch-btn brake" data-control="brake"><span>−</span><small>BRAKE</small></button><button class="touch-btn gas" data-control="gas"><span>＋</span><small>GO</small></button></div></div>
+    <button id="interactButton" class="interact-button"><span>✦</span> <b>DELIVER</b><small>NEAR A STOP</small></button>
+    <div id="toast" class="toast"></div>
+    <div id="mapOverlay" class="map-overlay" aria-hidden="true"><div class="map-sheet"><div class="map-title-row"><div><div class="eyebrow">THE LAND OF MANY STORIES</div><h2>ഒരറ്റം മുതൽ മറ്റേ അറ്റം വരെ</h2><p>14 ജില്ലകൾ · ഒരുപാട് വഴികൾ · നിനക്കായി ഒരു കേരളം</p></div><button id="closeMap" class="close-map">×</button></div><div id="districtGrid" class="district-grid"></div><div class="map-footer"><span><i class="map-you"></i> CURRENT LOCATION</span><span>DRIVE TO DISCOVER EVERY DISTRICT</span></div></div></div>
+    <div class="start-screen" id="startScreen"><div class="start-card"><div class="start-logo">വ</div><div class="eyebrow">A LITTLE OPEN-WORLD ADVENTURE</div><h2>വഴിയോരം</h2><p>കായലും മലയും കടലും താണ്ടി,<br>ഒരു നല്ല കാര്യം ചെയ്യാൻ പുറപ്പെടാം.</p><div class="start-tags"><span>14 DISTRICTS</span><span>ONE OPEN ROAD</span><span>ALL HEART</span></div><button id="startButton">യാത്ര തുടങ്ങാം <span>→</span></button><small>WASD / ARROWS TO DRIVE · MOBILE TOUCH CONTROLS</small></div></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
